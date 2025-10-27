@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../theme/app_colors.dart';
 import 'loading_widget.dart';
 
 /// Overlay загрузки для полноэкранной загрузки
@@ -23,7 +24,7 @@ class LoadingOverlay extends StatelessWidget {
         child,
         if (isLoading)
           Container(
-            color: Colors.black.withOpacity(0.5),
+            color: AppColors.overlayBackground.withOpacity(0.5),
             child: LoadingWidget(message: message),
           ),
       ],

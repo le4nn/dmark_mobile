@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import 'core/theme/app_colors.dart';
 import 'presentation/navigation/app_router.dart';
 import 'presentation/providers/app_providers.dart';
 import 'presentation/providers/hive_init.dart';
@@ -34,14 +35,14 @@ class InventoryApp extends ConsumerWidget {
       // Theme configuration
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.indigo,
+          seedColor: AppColors.primary,
           brightness: Brightness.light,
         ),
         useMaterial3: true,
       ),
       darkTheme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.indigo,
+          seedColor: AppColors.primary,
           brightness: Brightness.dark,
         ),
         useMaterial3: true,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../domain/entities/stock.dart';
 import '../../core/constants/breakpoints.dart';
+import '../../core/theme/app_colors.dart';
 
 /// Карточка остатка на складе
 class StockCard extends StatelessWidget {
@@ -134,7 +135,7 @@ class StockCard extends StatelessWidget {
                 IconButton(
                   icon: Icon(
                     Icons.remove_circle_outline_rounded,
-                    color: Colors.orange,
+                    color: AppColors.warning,
                   ),
                   tooltip: 'Уменьшить количество',
                   onPressed: () async {
@@ -160,15 +161,14 @@ class StockCard extends StatelessWidget {
 
   /// Получить цвет в зависимости от количества
   Color _getQuantityColor(BuildContext context, int quantity) {
-    final theme = Theme.of(context);
     if (quantity == 0) {
-      return theme.colorScheme.error;
+      return AppColors.stockEmpty;
     } else if (quantity < 10) {
-      return Colors.orange;
+      return AppColors.stockLow;
     } else if (quantity < 50) {
-      return Colors.blue;
+      return AppColors.stockMedium;
     } else {
-      return Colors.green;
+      return AppColors.stockHigh;
     }
   }
 
@@ -209,7 +209,7 @@ class StockCard extends StatelessWidget {
         icon: Icon(
           Icons.remove_circle_outline_rounded,
           size: 32,
-          color: Colors.orange,
+          color: AppColors.warning,
         ),
         title: const Text('Уменьшить количество'),
         content: Column(

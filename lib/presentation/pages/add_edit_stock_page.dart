@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/constants/breakpoints.dart';
+import '../../core/theme/app_colors.dart';
 import '../../domain/entities/stock.dart';
 import '../../domain/entities/product.dart';
 import '../providers/app_providers.dart';
@@ -123,7 +124,7 @@ class _AddEditStockPageState extends ConsumerState<AddEditStockPage> {
                       : 'Остаток добавлен',
             ),
             behavior: SnackBarBehavior.floating,
-            backgroundColor: Colors.green));
+            backgroundColor: AppColors.success));
       }
     } catch (e) {
       if (mounted) {

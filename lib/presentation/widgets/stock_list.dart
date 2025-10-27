@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/legacy.dart';
 import '../../domain/entities/stock.dart';
 import '../../domain/entities/product.dart';
 import '../../core/constants/breakpoints.dart';
+import '../../core/theme/app_colors.dart';
 import '../providers/app_providers.dart';
 import '../pages/add_edit_stock_page.dart';
 import 'stock_card.dart';
@@ -125,7 +126,7 @@ class StockList extends ConsumerWidget {
                                 'Отнято $amount шт. Осталось: $newQuantity шт.',
                               ),
                               behavior: SnackBarBehavior.floating,
-                              backgroundColor: Colors.orange,
+                              backgroundColor: AppColors.warning,
                             ));
                         }
                       } catch (e) {
