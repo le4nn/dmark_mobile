@@ -14,7 +14,6 @@
 - CRUD операции для продуктов
 - Добавление изображений (image_picker)
 - Адаптивный дизайн
-- Современный UI (Flex Color Scheme, Google Fonts)
 
 **Исправленные проблемы:**
 - Конвертация Gradle из Kotlin DSL в Groovy
@@ -52,7 +51,6 @@ flutter run -d <device_id>
 - **State Management:** Riverpod 3.0.3
 - **Navigation:** Go Router 16.2.5
 - **Database:** Hive 2.2.3
-- **UI:** Flex Color Scheme, Google Fonts, ScreenUtil
 
 ## 🔧 Полезные команды
 
