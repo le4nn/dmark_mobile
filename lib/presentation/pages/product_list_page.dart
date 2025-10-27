@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../domain/usecases/sort_products_usecase.dart';
 import '../../presentation/providers/app_providers.dart';
@@ -124,35 +125,41 @@ class _ProductListPageState extends ConsumerState<ProductListPage> {
       floatingActionButton: _buildFloatingActionButtons(context));
   }
 
-  /// Построение кнопок действий (мобильная версия)
+  /// Построение кнопок действий с адаптивным дизайном
   Widget _buildFloatingActionButtons(BuildContext context) {
-    final isMobile = MediaQuery.of(context).size.width < Breakpoints.mobile;
-    
-    if (isMobile) {
-      return FloatingActionButton(
-        onPressed: () => _showActionSheet(context),
-        tooltip: 'Действия',
-        child: const Icon(Icons.add_rounded),
-      );
-    }
-    
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        FloatingActionButton.extended(
-          heroTag: 'stock',
-          label: const Text('Склады'),
-          icon: const Icon(Icons.warehouse_rounded),
-          onPressed: () => AppRouter.goToStocks(context),
-        ),
-        const SizedBox(height: Breakpoints.paddingM),
-        FloatingActionButton.extended(
-          heroTag: 'add',
-          label: const Text('Добавить продукт'),
-          icon: const Icon(Icons.add_rounded),
-          onPressed: () => AppRouter.goToAddProduct(context),
-        )]);
+    return ResponsiveBuilder(
+      builder: (context, sizingInformation) {
+        // Мобильная версия - одна кнопка с меню
+        if (sizingInformation.isMobile) {
+          return FloatingActionButton(
+            onPressed: () => _showActionSheet(context),
+            tooltip: 'Действия',
+            child: const Icon(Icons.add_rounded),
+          );
+        }
+        
+        // Планшет/Десктоп - расширенные кнопки
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            FloatingActionButton.extended(
+              heroTag: 'stock',
+              label: const Text('Склады'),
+              icon: const Icon(Icons.warehouse_rounded),
+              onPressed: () => AppRouter.goToStocks(context),
+            ),
+            const SizedBox(height: Breakpoints.paddingM),
+            FloatingActionButton.extended(
+              heroTag: 'add',
+              label: const Text('Добавить продукт'),
+              icon: const Icon(Icons.add_rounded),
+              onPressed: () => AppRouter.goToAddProduct(context),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   /// Показать меню действий для мобильных устройств
